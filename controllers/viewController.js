@@ -98,6 +98,17 @@ exports.getSignUpForm = function (req, res) {
     });
 };
 
+exports.getForgetPasswordForm = function (req, res) {
+  res.status(200).render('forgetPassword', {
+    title: 'Forgot Password',
+  });
+};
+
+exports.getResetPasswordForm = function (req, res) {
+  res.status(200).render('resetPassword', {
+    title: 'Reset your password',
+  });
+};
 // exports.updateUserData = catchAsync(async function (req, res, next) {
 //   const updatedUser = await User.findByIdAndUpdate(
 //     req.user.id,

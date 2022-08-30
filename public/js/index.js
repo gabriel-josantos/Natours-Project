@@ -4,6 +4,7 @@ import { signup } from './signup';
 import { displayMap } from './leaflet';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
+import { forgetPassword, resetPassword } from './resetUserPassword';
 //DOM ELEMENTS
 
 const leaflet = document.getElementById('map');
@@ -13,7 +14,8 @@ const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userSettingsForm = document.querySelector('.form-user-settings');
 const bookBtn = document.getElementById('book-tour');
-//Values
+const forgetForm = document.querySelector('form--forget-password');
+const resetForm = document.querySelector('form--reset-password');
 
 // DELEGATION
 
@@ -84,5 +86,23 @@ if (bookBtn) {
     e.target.textContent = 'Processing...';
     const tourId = e.target.dataset.tourId;
     bookTour(tourId);
+  });
+}
+
+if (forgetForm) {
+  forgetForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    forgetPassword(email);
+  });
+}
+
+if (resetForm) {
+  resetForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const newPassword = document.getElementById('password').value;
+    const newPasswordConfirm =
+      document.getElementById('password-confirm').value;
+    resetPassword(newPassword, newPasswordConfirm);
   });
 }
