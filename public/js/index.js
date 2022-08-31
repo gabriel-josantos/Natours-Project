@@ -24,7 +24,7 @@ if (leaflet) {
   const locations = JSON.parse(leaflet.dataset.locations);
   displayMap(locations);
 }
-
+//////////////////
 if (loginForm) {
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -33,6 +33,7 @@ if (loginForm) {
     login(email, password);
   });
 }
+////////////////////
 if (signupForm) {
   signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -43,9 +44,9 @@ if (signupForm) {
     signup(name, email, password, passwordConfirm);
   });
 }
-
+/////////////////////
 if (logOutBtn) logOutBtn.addEventListener('click', logout);
-
+/////////////////////////
 if (userDataForm) {
   userDataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -58,7 +59,7 @@ if (userDataForm) {
     location.reload();
   });
 }
-
+////////////////////////
 if (userSettingsForm) {
   userSettingsForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -81,7 +82,7 @@ if (userSettingsForm) {
     document.getElementById('password-confirm').value = '';
   });
 }
-
+//////////////////////
 if (bookBtn) {
   bookBtn.addEventListener('click', (e) => {
     e.target.textContent = 'Processing...';
@@ -89,7 +90,7 @@ if (bookBtn) {
     bookTour(tourId);
   });
 }
-
+////////////////////////
 if (forgetForm) {
   forgetForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -99,7 +100,7 @@ if (forgetForm) {
     forgetBtn.textContent = 'Send password recovery link';
   });
 }
-
+//////////////////////////
 if (resetForm) {
   resetForm.addEventListener('submit', async (e) => {
     e.preventDefault();
