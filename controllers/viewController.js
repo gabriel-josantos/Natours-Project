@@ -105,8 +105,10 @@ exports.getForgetPasswordForm = function (req, res) {
 };
 
 exports.getResetPasswordForm = function (req, res) {
+  const token = req.params.token;
   res.status(200).render('resetPassword', {
-    title: 'Reset your password',
+    title: 'Change your password',
+    token,
   });
 };
 // exports.updateUserData = catchAsync(async function (req, res, next) {

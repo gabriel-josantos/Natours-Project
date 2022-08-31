@@ -14,8 +14,9 @@ const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userSettingsForm = document.querySelector('.form-user-settings');
 const bookBtn = document.getElementById('book-tour');
-const forgetForm = document.querySelector('form--forget-password');
-const resetForm = document.querySelector('form--reset-password');
+const forgetForm = document.querySelector('.form--forget-password');
+const forgetBtn = document.querySelector('.btn--forget-password');
+const resetForm = document.querySelector('.form--reset-password');
 
 // DELEGATION
 
@@ -90,19 +91,21 @@ if (bookBtn) {
 }
 
 if (forgetForm) {
-  forgetForm.addEventListener('submit', (e) => {
+  forgetForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    forgetBtn.textContent = 'Processing...';
     const email = document.getElementById('email').value;
-    forgetPassword(email);
+    await forgetPassword(email);
+    forgetBtn.textContent = 'Send password recovery link';
   });
 }
 
 if (resetForm) {
-  resetForm.addEventListener('submit', (e) => {
+  resetForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const newPassword = document.getElementById('password').value;
-    const newPasswordConfirm =
-      document.getElementById('password-confirm').value;
-    resetPassword(newPassword, newPasswordConfirm);
+    const newPasswordConfirm = document.getElementById('passwordConfirm').value;
+    const token = e.target.dataset.token;
+    await resetPassword(newPassword, newPasswordConfirm, token);
   });
 }

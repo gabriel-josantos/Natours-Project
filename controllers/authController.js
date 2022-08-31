@@ -210,7 +210,10 @@ exports.resetPassword = catchAsync(async function (req, res, next) {
   //user.changedPasswordAt = Date.now();
 
   //4) Log the user in, send JWT
-  createAndSendToken(user, 200, res);
+  //createAndSendToken(user, 200, res);
+  res.status(200).json({
+    status: 'success',
+  });
 });
 
 exports.updatePassword = catchAsync(async function (req, res, next) {
