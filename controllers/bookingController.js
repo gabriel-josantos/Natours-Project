@@ -67,7 +67,8 @@ async function createBookingCheckout(session) {
 }
 
 exports.webhookCheckout = function (req, res, next) {
-  req.cookies.SameSite = 'none';
+  req.cookies.SameSite = 'None';
+  req.cookies.SameSite = 'Secure';
   const signature = req.headers['stripe-signature'];
   let event;
   try {
