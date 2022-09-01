@@ -76,7 +76,7 @@ app.use(
         'https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js',
         'ajax.googleapis.com *',
       ],
-      styleSrc: ["'self'", 'fonts.googleapis.com', "'unsafe-inline'"],
+      styleSrc: ["'self'", 'fonts.googleapis.com'],
       fontSrc: ['fonts.gstatic.com'],
       upgradeInsecureRequests: [],
     },

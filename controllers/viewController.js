@@ -88,10 +88,16 @@ exports.getMyTours = catchAsync(async function (req, res, next) {
   const toursIDs = bookings.map((el) => el.tour);
   const tours = await Tour.find({ _id: { $in: toursIDs } });
   //const tourIDs = bookings.map((el) => el.tour);
-  res.status(200).render('overview', {
-    title: 'My Tours',
-    tours,
-  });
+  res
+    .status(200)
+    .set(
+      'Content-Security-Policy',
+      "connect-src 'self' https://cdnjs.cloudflare.com"
+    )
+    .render('overview', {
+      title: 'My Tours',
+      tours,
+    });
 });
 
 exports.getSignUpForm = function (req, res) {
@@ -107,17 +113,29 @@ exports.getSignUpForm = function (req, res) {
 };
 
 exports.getForgetPasswordForm = function (req, res) {
-  res.status(200).render('forgetPassword', {
-    title: 'Forgot Password',
-  });
+  res
+    .status(200)
+    .set(
+      'Content-Security-Policy',
+      "connect-src 'self' https://cdnjs.cloudflare.com"
+    )
+    .render('forgetPassword', {
+      title: 'Forgot Password',
+    });
 };
 
 exports.getResetPasswordForm = function (req, res) {
   const token = req.params.token;
-  res.status(200).render('resetPassword', {
-    title: 'Change your password',
-    token,
-  });
+  res
+    .status(200)
+    .set(
+      'Content-Security-Policy',
+      "connect-src 'self' https://cdnjs.cloudflare.com"
+    )
+    .render('resetPassword', {
+      title: 'Change your password',
+      token,
+    });
 };
 // exports.updateUserData = catchAsync(async function (req, res, next) {
 //   const updatedUser = await User.findByIdAndUpdate(
