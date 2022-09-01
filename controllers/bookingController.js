@@ -29,7 +29,11 @@ exports.getCheckoutSession = catchAsync(async function (req, res, next) {
           product_data: {
             description: tour.summary,
             name: `${tour.name} Tour`,
-            images: [tour.imageCover],
+            images: [
+              `${req.protocol}://${req.get('host')}/img/tours/${
+                tour.imageCover
+              }`,
+            ],
           },
         },
         quantity: 1,
@@ -74,7 +78,7 @@ exports.webhookCheckout = function (req, res, next) {
   } catch (err) {
     return res.status(400).send(`Webhook error: ${err.message}`);
   }
-  if (event.type === 'checkout.session.complete') {
+  if (event.type === 'checkout.session.completed') {
     createBookingCheckout(event.data.object);
 
     res.status(200).json({ received: true });
