@@ -41,10 +41,16 @@ exports.getCheckoutSession = catchAsync(async function (req, res, next) {
     ],
   });
   //3) Create session as response
-  res.status(200).json({
-    status: 'success',
-    session,
-  });
+  res
+    .status(200)
+    .set(
+      'Content-Security-Policy',
+      "connect-src 'self' https://cdnjs.cloudflare.com"
+    )
+    .json({
+      status: 'success',
+      session,
+    });
 });
 
 /////////// Used before hosting in a server
@@ -79,10 +85,15 @@ exports.webhookCheckout = function (req, res, next) {
     return res.status(400).send(`Webhook error: ${err.message}`);
   }
   if (event.type === 'checkout.session.completed') {
-    console.log(hey);
     createBookingCheckout(event.data.object);
 
-    res.status(200).json({ received: true });
+    res
+      .status(200)
+      .set(
+        'Content-Security-Policy',
+        "connect-src 'self' https://cdnjs.cloudflare.com"
+      )
+      .json({ received: true });
   }
   next();
 };
