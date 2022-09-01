@@ -84,6 +84,12 @@ app.use(
   })
 );
 
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
+
 // Development Logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -98,12 +104,6 @@ const limiter = rateLimit({
 app.use(cookieParser());
 
 app.use('/api', limiter);
-
-app.post(
-  '/webhook-checkout',
-  express.raw({ type: 'application/json' }),
-  bookingController.webhookCheckout
-);
 
 // Body Parser, reading data from the body into req.body
 app.use(express.json({ limit: '10kb' }));
