@@ -5,6 +5,7 @@ import { displayMap } from './leaflet';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
 import { forgetPassword, resetPassword } from './resetUserPassword';
+import { showAlert } from './alerts';
 //DOM ELEMENTS
 
 const leaflet = document.getElementById('map');
@@ -110,3 +111,6 @@ if (resetForm) {
     await resetPassword(newPassword, newPasswordConfirm, token);
   });
 }
+
+const alertMessage = document.querySelector('body').dataset.alert;
+if (alertMessage) showAlert('success', alertMessage, 20);
