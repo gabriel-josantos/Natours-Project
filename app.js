@@ -66,70 +66,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Set Security HTTP headers
 //app.use(helmet({ crossOriginEmbedderPolicy: false, originAgentCluster: true }));
 app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'", 'data:', 'blob:', 'https:', 'ws:'],
-        baseUri: ["'self'"],
-        fontSrc: ["'self'", 'https:', 'data:'],
-        scriptSrc: [
-          "'self'",
-          'https:',
-          'http:',
-          'blob:',
-          'https://*.mapbox.com',
-          'https://js.stripe.com',
-          'https://m.stripe.network',
-          'https://*.cloudflare.com',
-        ],
-        frameSrc: ["'self'", 'https://js.stripe.com'],
-        objectSrc: ["'none'"],
-        styleSrc: ["'self'", 'https:', "'unsafe-inline'"],
-        workerSrc: [
-          "'self'",
-          'data:',
-          'blob:',
-          'https://*.tiles.mapbox.com',
-          'https://api.mapbox.com',
-          'https://events.mapbox.com',
-          'https://m.stripe.network',
-        ],
-        childSrc: ["'self'", 'blob:'],
-        imgSrc: ["'self'", 'data:', 'blob:'],
-        formAction: ["'self'"],
-        connectSrc: [
-          "'self'",
-          "'unsafe-inline'",
-          'data:',
-          'blob:',
-          'https://*.stripe.com',
-          'https://*.mapbox.com',
-          'https://*.cloudflare.com/',
-          'https://bundle.js:*',
-          'ws://127.0.0.1:*/',
-        ],
-        upgradeInsecureRequests: [],
-      },
+  helmet.contentSecurityPolicy({
+    useDefaults: false,
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", 'ws://127.0.0.1:*'],
+      scriptSrc: [
+        "'self'",
+        'https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js',
+        'ajax.googleapis.com *',
+      ],
+      styleSrc: ["'self'", 'fonts.googleapis.com', "'unsafe-inline'"],
+      fontSrc: ['fonts.gstatic.com'],
+      upgradeInsecureRequests: [],
     },
   })
 );
-// app.use(
-//   helmet.contentSecurityPolicy({
-//     useDefaults: false,
-//     directives: {
-//       defaultSrc: ["'self'"],
-//       connectSrc: ["'self'", 'ws://127.0.0.1:*'],
-//       scriptSrc: [
-//         "'self'",
-//         'https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js',
-//         'ajax.googleapis.com *',
-//       ],
-//       styleSrc: ["'self'", 'fonts.googleapis.com'],
-//       fontSrc: ['fonts.gstatic.com'],
-//       upgradeInsecureRequests: [],
-//     },
-//   })
-// );
 
 app.post(
   '/webhook-checkout',
