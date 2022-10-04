@@ -2,6 +2,13 @@ doctype html
 html
     head
         block head
+            script(async='' src='https://www.googletagmanager.com/gtag/js?id=G-9CN7W5ZKXC')
+            script.
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-9CN7W5ZKXC');
+
             meta(charset="UTF-8")
             meta(name='viewport' content= 'width=device-width, initial-scale= 1.0')
             link(rel='stylesheet' href='/css/style.css')
@@ -24,6 +31,16 @@ html
     //-script(src='/js/leaflet.js' defer )
     //-script(src='/js/login.js' )
     script(src='/js/bundle.js')
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9CN7W5ZKXC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9CN7W5ZKXC');
+</script>
 
      
             
