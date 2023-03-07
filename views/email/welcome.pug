@@ -1,0 +1,17 @@
+extends baseEmail
+
+
+block content
+    p Olá #{firstName},
+        p Seja muito bem vindo(a) a Natours, Nos estamos muito felizes em te termos conosco  🎉🙏
+        p Nos somos todos uma grande familia aqui, então lembre-se de fazer um upload de sua foto de usuario para que nos possamos te conhecer um pouco melhor!
+            tbody
+                tr
+                    td(align='left')
+                        table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+                            tbody
+                                tr
+                                    td
+                                        a(href=`${url}`, target='_blank') Inserir foto de usuario
+        p Se voce precisar de ajuda para agendar a sua proxima tour, por favor sinta-se livre para entar em contato conosco!
+        p - Gabriel Santos, CEO
